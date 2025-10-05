@@ -18,22 +18,6 @@ router.route('/').post(async (req, res) => {
     const mockImage = generateMockImage(prompt);
     return res.status(200).json({ photo: mockImage });
 
-    /* Uncomment this section if you want to try Hugging Face API again
-    // Use Hugging Face API for image generation - use a working model
-    const response = await fetch('https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        inputs: prompt,
-        parameters: {
-          num_inference_steps: 20,
-          guidance_scale: 7.5,
-        }
-      }),
-    });
 
     if (!response.ok) {
       if (response.status === 503) {
