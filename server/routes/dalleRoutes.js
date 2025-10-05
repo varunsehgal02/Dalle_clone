@@ -81,6 +81,7 @@ function generateMockImage(prompt) {
     'moon': '#6C5CE7',
     'flower': '#FD79A8',
     'cute': '#FFB6C1',
+    'baby': '#FFB6C1',
     'default': '#A29BFE'
   };
   
@@ -107,8 +108,9 @@ function generateMockImage(prompt) {
     </svg>
   `;
   
-  // Convert SVG to base64
-  return Buffer.from(svg).toString('base64');
+  // Convert SVG to base64 and add data URL prefix
+  const base64 = Buffer.from(svg).toString('base64');
+  return `data:image/svg+xml;base64,${base64}`;
 }
 
 export default router;

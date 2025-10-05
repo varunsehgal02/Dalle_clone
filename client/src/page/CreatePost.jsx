@@ -40,7 +40,12 @@ const CreatePost = () => {
 
         if (response.ok) {
           const data = await response.json();
-          setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
+          // Check if the photo is already a complete data URL or needs prefix
+          if (data.photo.startsWith('data:')) {
+            setForm({ ...form, photo: data.photo });
+          } else {
+            setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
+          }
         } else {
           const errorData = await response.json();
           alert(errorData.message || 'Failed to generate image');
